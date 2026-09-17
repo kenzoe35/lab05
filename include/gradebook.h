@@ -5,7 +5,7 @@
 
 struct Gradebook {
     std:string name;
-    double scores;
+    double scores[5];
 };
 
 #endif
