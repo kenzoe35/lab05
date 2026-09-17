@@ -14,8 +14,7 @@
  * @param[in] num_assignments Number of assignments in the grid
  * @return The mean of that student's assignment scores.
  */
-[[nodiscard]] double student_average(const double* const* scores,
-                                    const int student_index,
+[[nodiscard]] double student_average(const double &scores,
                                     const int num_assignments);
 
 /**

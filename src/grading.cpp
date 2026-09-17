@@ -1,16 +1,18 @@
 // src/grading.cpp
 #include "grading.h"
 
+#include "gradebook.h"
+
 #include <algorithm>
 
 #include "utilities.h"
 
-double student_average(const double* const* scores, int student_index, const int num_assignments) {
+double student_average(const double &scores, const int num_assignments) {
     double total{};
 
     // Total the assignment scores for this student
     for (auto i{0}; i < num_assignments; i++) {
-        total += scores[student_index][i];
+        total += scores[i];
     }
 
     return total / num_assignments;
