@@ -7,11 +7,12 @@
 
 #include "printing.h"
 #include "grading.h"
+#include "gradebook.h"
 
 int main(int argc, char** argv) {
     int input{-1};
 
-    const std::string names[]{
+   const std::string names[]{
         "Ada Lovelace",
         "Grace Hopper",
         "Alan Turing",
