@@ -3,6 +3,7 @@
 #define PRINTING_H
 
 #include <string>
+#include "gradebook.h"
 
 constexpr int name_width{14};
 
@@ -29,7 +30,7 @@ void print_header(const int num_students, const int num_assignments);
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
-void print_student_row(const std::string& name, const double* const* scores, int student_index, const int num_students, const int num_assignments);
+void print_student_row(const Gradebook& student, const double* const* scores, int student_index, const int num_students, const int num_assignments);
 
 /**
  * @brief Prints a bar chart of how many students earned each letter grade.
@@ -70,6 +71,6 @@ void print_assignment_summary(const double* const* scores, const int num_student
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
-void print_roster(const std::string* names, int name_count);
+void print_roster(const Gradebook* book, int num_students);
 
 #endif

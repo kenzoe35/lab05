@@ -4,7 +4,7 @@
 #include <string>
 
 struct Gradebook {
-    std:string name;
+    std::string name;
     double scores[5];
 };
 
