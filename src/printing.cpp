@@ -70,7 +70,7 @@ void print_assignment_summary(const Gradebook* book, const int num_students, con
     std::cout << "\nASSIGNMENT AVERAGES\n";
 
     for (auto i{0}; i < num_assignments; i++) {
-        auto avg{assignment_average(scores, i, num_students, num_assignments)};
+        auto avg{assignment_average(book, i, num_students, num_assignments)};
 
         std::cout << "  A" << i + 1 << ": " << std::setw(6)
                   << std::setprecision(2) << std::fixed << avg;
