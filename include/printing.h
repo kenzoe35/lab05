@@ -24,9 +24,7 @@ void print_header(const int num_students, const int num_assignments);
  * @post Neither name nor scores is modified.
  * @post Writes to standard output.
  *
- * @param[in] name            The student's full name.
- * @param[in] scores          The grade grid.
- * @param[in] student_index   Row of the student to print.
+ * @param[in] student         Reference to the Gradebook
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
@@ -38,7 +36,7 @@ void print_student_row(const Gradebook& student, const int num_students, const i
  * @post The scores grid is not modified.
  * @post Writes to standard output.
  *
- * @param[in] scores  The grade grid.
+ * @param[in] book            Pointer to the Gradebook
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
@@ -52,7 +50,7 @@ void print_histogram(const Gradebook* book, const int num_students, const int nu
  * @post The scores grid is not modified.
  * @post Writes to standard output.
  *
- * @param[in] scores  The grade grid.
+ * @param[in] book            Pointer to the Gradebook
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
@@ -62,14 +60,12 @@ void print_assignment_summary(const Gradebook* book, const int num_students, con
  * @brief Prints each student's initials beside their full name.
  *
  * @pre names points to at least name_count consecutive strings.
- * @pre name_count is not negative.
+ * @pre num_students is not negative.
  * @post No name is modified.
  * @post Writes to standard output.
  *
- * @param[in] names      Pointer to the first name in the roster.
- * @param[in] name_count  How many names the roster holds.
+ * @param[in] book            Pointer to the Gradebook
  * @param[in] num_students    Number of students in scores grid
- * @param[in] num_assignments Number of assignments in scores grid
  */
 void print_roster(const Gradebook* book, int num_students);
 

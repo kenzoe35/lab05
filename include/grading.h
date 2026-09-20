@@ -8,9 +8,7 @@
  * @pre student_index is in the range [0, num_students).
  * @post The scores grid is not modified.
  *
- * @param[in] scores          The grade grid.
- * @param[in] student_index   Row of the student to average.
- * @param[in] num_students    Number of students in the grid
+ * @param[in] student         The student's gradebook record
  * @param[in] num_assignments Number of assignments in the grid
  * @return The mean of that student's assignment scores.
  */
@@ -23,8 +21,10 @@
  * @pre assignment_index is in the range [0, num_assignments).
  * @post The scores grid is not modified.
  *
- * @param[in] scores           The grade grid.
+ * @param[in] book              Pointer to Gradebook
  * @param[in] assignment_index  Column of the assignment to average.
+ * @param[in] num_students     Number of students in the gradebook.
+ * @param[in] num_assignments  Number of assignments per student.
  * @return The mean score earned on that assignment.
  */
 [[nodiscard]] double assignment_average(const Gradebook* book, int assignment_index, const int num_students, const int num_assignments);
@@ -34,7 +34,9 @@
  *
  * @post The scores grid is not modified.
  *
- * @param[in] scores  The grade grid.
+ * @param[in] book  Pointer to the Gradebook
+ * @param[in] num_students     Number of students in the gradebook.
+ * @param[in] num_assignments  Number of assignments per student.
  * @return The mean of all num_students * num_assignments scores.
  */
 [[nodiscard]] double class_average(const Gradebook* book, const int num_students, const int num_assignments);
@@ -47,8 +49,7 @@
  * @post highest holds that student's maximum score.
  * @post The scores grid is not modified.
  *
- * @param[in]  scores           The grade grid.
- * @param[in]  student_index    Row of the student to examine.
+ * @param[in]  student          Reference to the gradebook
  * @param[in]  num_students     Number of students in the scores grid
  * @param[in]  num_assignments  Number of assignments in the scores grid
  * @param[out] lowest           Receives the minimum score.
@@ -62,7 +63,7 @@ void find_extremes(const Gradebook& student, const int num_students, const int n
  * @pre target is one of 'A', 'B', 'C', 'D', or 'F'.
  * @post The scores grid is not modified.
  *
- * @param[in] scores  The grade grid.
+ * @param[in] book    Pointer to the gradebook
  * @param[in] target  The letter grade to count.
  * @param[in] num_students     Number of students in the scores grid
  * @param[in] num_assignments  Number of assignments in the scores grid
@@ -76,8 +77,7 @@ void find_extremes(const Gradebook& student, const int num_students, const int n
  * @pre student_index is in the range [0, num_students).
  * @post The scores grid is not modified.
  *
- * @param[in] scores        The grade grid.
- * @param[in] student_index  Row of the student to examine.
+ * @param[in] student        Reference to the Gradebook
  * @param[in] num_students     Number of students in the scores grid
  * @param[in] num_assignments  Number of assignments in the scores grid
  * @return true if any of that student's scores is 100 or above.
@@ -93,8 +93,7 @@ void find_extremes(const Gradebook& student, const int num_students, const int n
  * @pre student_index is in the range [0, num_students).
  * @post The scores grid is not modified.
  *
- * @param[in] scores        The grade grid.
- * @param[in] student_index  Row of the student to examine.
+ * @param[in] student        Reference to the Gradebook
  * @param[in] num_students     Number of students in the scores grid
  * @param[in] num_assignments  Number of assignments in the scores grid
  * @return true if either at-risk condition holds.
