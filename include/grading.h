@@ -27,8 +27,7 @@
  * @param[in] assignment_index  Column of the assignment to average.
  * @return The mean score earned on that assignment.
  */
-[[nodiscard]] double assignment_average(const Gradebook* book,
-                                       const int num_students, const int num_assignments);
+[[nodiscard]] double assignment_average(const Gradebook* book, int assignment_index, const int num_students, const int num_assignments);
 
 /**
  * @brief Calculates the mean of every score in the grid.

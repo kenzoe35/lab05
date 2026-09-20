@@ -57,26 +57,26 @@ int main(int argc, char** argv) {
                             print_header(num_students, num_assignments);
 
                             for(auto row{0}; row < num_students; row++) {
-                                print_student_row(names[row], scores, row, num_students, num_assignments);
+                                print_student_row(book[row], num_students, num_assignments);
                             }
 
                             std::cout << "\t* perfect score\t! at risk\n";
                             break;
                         }
                         case 2: {
-                    print_histogram(scores, num_students, num_assignments);
+                    print_histogram(book, num_students, num_assignments);
                     break;
                 }
                 case 3: {
-                    print_assignment_summary(scores, num_students, num_assignments);
+                    print_assignment_summary(book, num_students, num_assignments);
                     break;
                 }
                 case 4: {
-                    print_roster(names, num_students);
+                    print_roster(book, num_students);
                     break;
                 }
                 case 5: {
-                    double avg{class_average(scores, num_students, num_assignments)};
+                    double avg{class_average(book, num_students, num_assignments)};
 
                     std::cout << "Class Average: " << std::setw(6)
                               << std::setprecision(2) << std::fixed << avg

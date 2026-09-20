@@ -42,7 +42,7 @@ void print_student_row(const Gradebook& student, const int num_students, const i
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
-void print_histogram(const double* const* scores, const int num_students, const int num_assignments);
+void print_histogram(const Gradebook* book, const int num_students, const int num_assignments);
 
 /**
  * @brief Prints the mean score for each assignment.
@@ -56,7 +56,7 @@ void print_histogram(const double* const* scores, const int num_students, const 
  * @param[in] num_students    Number of students in scores grid
  * @param[in] num_assignments Number of assignments in scores grid
  */
-void print_assignment_summary(const double* const* scores, const int num_students, const int num_assignments);
+void print_assignment_summary(const Gradebook* book, const int num_students, const int num_assignments);
 
 /**
  * @brief Prints each student's initials beside their full name.

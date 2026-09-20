@@ -12,7 +12,7 @@ double student_average(const Gradebook& student, const int num_assignments) {
 
     // Total the assignment scores for this student
     for (auto i{0}; i < num_assignments; i++) {
-        total += student.cores[i];
+        total += student.scores[i];
     }
 
     return total / num_assignments;
@@ -61,7 +61,7 @@ int count_grade(const Gradebook* book, char target, const int num_students, cons
     int count{};
 
     for (auto i{0}; i < num_students; i++) {
-        if (letter_grade(student_average(book[i]) == target) {
+        if (letter_grade(student_average(book[i], num_assignments)) == target) {
             count++;
         }
     }
@@ -80,7 +80,7 @@ bool has_perfect_score(const Gradebook& student, const int num_students, const i
 }
 
 bool is_at_risk(const Gradebook& student, const int num_students, const int num_assignments) {
-    if (student_average(student) < 70.0) {
+    if (student_average(student, num_assignments) < 70.0) {
         return true;
     }
 

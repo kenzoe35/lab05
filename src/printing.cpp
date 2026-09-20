@@ -32,23 +32,23 @@ void print_student_row(const Gradebook& student, const int num_students, const i
                   << student.scores[i];
     }
 
-    double avg{student_average(student)};
+    double avg{student_average(student, num_assignments)};
 
     std::cout << std::setw(8) << std::setprecision(2) << std::fixed << avg
               << " \t" << letter_grade(avg);
 
-    if (has_perfect_score(student, num_assignments)) {
+    if (has_perfect_score(student, num_students, num_assignments)) {
         std::cout << "  *";
     }
 
-    if (is_at_risk(student, num_assignments)) {
+    if (is_at_risk(student, num_students, num_assignments)) {
         std::cout << "  !";
     }
 
     std::cout << '\n';
 }
 
-void print_histogram(const double* const* scores, const int num_students, const int num_assignments) {
+void print_histogram(const Gradebook* book, const int num_students, const int num_assignments) {
     const char letters[]{'A', 'B', 'C', 'D', 'F'};
 
     std::cout << "\nGRADE DISTRIBUTION\n";
@@ -66,7 +66,7 @@ void print_histogram(const double* const* scores, const int num_students, const 
     }
 }
 
-void print_assignment_summary(const double* const* scores, const int num_students, const int num_assignments) {
+void print_assignment_summary(const Gradebook* book, const int num_students, const int num_assignments) {
     std::cout << "\nASSIGNMENT AVERAGES\n";
 
     for (auto i{0}; i < num_assignments; i++) {
