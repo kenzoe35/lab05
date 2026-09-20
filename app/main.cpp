@@ -66,11 +66,6 @@ int main(int argc, char** argv) {
                     break;
                 }
                 case 0: {
-                            for(auto student{0}; student < num_students; student++) {
-                                delete[] scores[student];
-                            }
-
-                            delete[] scores;
                             return 0;
                         }
                 default: {
