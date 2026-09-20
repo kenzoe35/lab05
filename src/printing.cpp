@@ -24,24 +24,24 @@ void print_header(const int num_students, const int num_assignments) {
     std::cout << '\n';
 }
 
-void print_student_row(const std::string& name, const double* const* scores, int student_index, const int num_students, const int num_assignments) {
+void print_student_row(const Gradebook& student, const int num_students, const int num_assignments) {
     std::cout << pad_name(name, name_width);
 
     for (auto i{0}; i < num_assignments; i++) {
         std::cout << std::setw(6) << std::setprecision(1) << std::fixed
-                  << scores[student_index][i];
+                  << student.scores[i];
     }
 
-    double avg{student_average(scores, student_index, num_assignments)};
+    double avg{student_average(student)};
 
     std::cout << std::setw(8) << std::setprecision(2) << std::fixed << avg
               << " \t" << letter_grade(avg);
 
-    if (has_perfect_score(scores, student_index, num_students, num_assignments)) {
+    if (has_perfect_score(student, num_assignments)) {
         std::cout << "  *";
     }
 
-    if (is_at_risk(scores, student_index, num_students, num_assignments)) {
+    if (is_at_risk(student, num_assignments)) {
         std::cout << "  !";
     }
 
@@ -83,12 +83,12 @@ void print_assignment_summary(const double* const* scores, const int num_student
     }
 }
 
-void print_roster(const std::string* names, int name_count) {
+void print_roster(const Gradebook* book, int num_students) {
     std::cout << "\nROSTER\n";
 
     // names is a pointer to the first element; it carries no size of its
     // own, so name_count is how far we are permitted to walk
     for (auto i{0}; i < name_count; i++) {
-        std::cout << initials_of(names[i]) << '\t' << names[i] << '\n';
+        std::cout << initials_of(book[i].name) << '\t' << names[i] << '\n';
     }
 }
