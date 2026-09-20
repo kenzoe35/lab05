@@ -12,7 +12,7 @@ double student_average(const Gradebook& student, const int num_assignments) {
 
     // Total the assignment scores for this student
     for (auto i{0}; i < num_assignments; i++) {
-        total += scores[i];
+        total += student.cores[i];
     }
 
     return total / num_assignments;
@@ -49,19 +49,19 @@ void find_extremes(const Gradebook& student, const int num_students, const int n
 
     for (auto i{1}; i < num_assignments; i++) {
         if (student.scores[i] < lowest) {
-            lowest = student.scores[i]
+            lowest = student.scores[i];
         }
         if (student.scores[i] > highest) {
-            highest = student.scores[j]
+            highest = student.scores[i];
         }
     }
 }
 
-int count_grade(const double* const* scores, char target, const int num_students, const int num_assignments) {
+int count_grade(const Gradebook* book, char target, const int num_students, const int num_assignments) {
     int count{};
 
     for (auto i{0}; i < num_students; i++) {
-        if (letter_grade(student_average(scores, i, num_assignments)) == target) {
+        if (letter_grade(student_average(book[i]) == target) {
             count++;
         }
     }

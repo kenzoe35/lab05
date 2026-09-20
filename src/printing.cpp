@@ -25,7 +25,7 @@ void print_header(const int num_students, const int num_assignments) {
 }
 
 void print_student_row(const Gradebook& student, const int num_students, const int num_assignments) {
-    std::cout << pad_name(name, name_width);
+    std::cout << pad_name(student.name, name_width);
 
     for (auto i{0}; i < num_assignments; i++) {
         std::cout << std::setw(6) << std::setprecision(1) << std::fixed
@@ -88,7 +88,7 @@ void print_roster(const Gradebook* book, int num_students) {
 
     // names is a pointer to the first element; it carries no size of its
     // own, so name_count is how far we are permitted to walk
-    for (auto i{0}; i < name_count; i++) {
-        std::cout << initials_of(book[i].name) << '\t' << names[i] << '\n';
+    for (auto i{0}; i < num_students; i++) {
+        std::cout << initials_of(book[i].name) << '\t' << book[i].name << '\n';
     }
 }

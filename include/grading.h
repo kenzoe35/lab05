@@ -69,7 +69,7 @@ void find_extremes(const Gradebook& student, const int num_students, const int n
  * @param[in] num_assignments  Number of assignments in the scores grid
  * @return The number of students whose average earns that letter.
  */
-[[nodiscard]] int count_grade(const Gradebook& student, char target, const int num_students, const int num_assignments);
+[[nodiscard]] int count_grade(const Gradebook* book, char target, const int num_students, const int num_assignments);
 
 /**
  * @brief Reports whether a student earned a perfect score on any assignment.
@@ -100,6 +100,6 @@ void find_extremes(const Gradebook& student, const int num_students, const int n
  * @param[in] num_assignments  Number of assignments in the scores grid
  * @return true if either at-risk condition holds.
  */
-[[nodiscard]] bool is_at_risk(const double* const* scores, int student_index, const int num_students, const int num_assignments);
+[[nodiscard]] bool is_at_risk(const Gradebook& student, const int num_students, const int num_assignments);
 
 #endif
