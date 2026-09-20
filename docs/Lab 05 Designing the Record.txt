@@ -1,0 +1,102 @@
+Lab 05: Designing the Record
+What does the struct hold? One student's name and that student's scores. Nothing else — apply this morning's rule. If you are tempted to add a field, ask whether it describes the student or describes something the program is doing.
+- The structure holds the collections of all students and names
+
+What is fixed and what varies? One of these two numbers belongs inside the struct as a fixed-size array. The other becomes a count that travels with the collection. Decide which, and be able to say why.
+
+    The number of assignments in the course
+    The number of students on the roster
+
+What is it called, and where does it live? Which header? Your project already has a module structure from Lab 03 — this type has to fit into it, not sit wherever is convenient. Ask which modules need to see this definition.
+
+How is a collection of them passed? Write the shape a function signature will use to receive the whole roster. You settled this pattern last week; apply it.
+
+
+
+STRUCT:              Gradebook
+MODELS:              A structure containing collections all names and scores
+LIVES IN:            Utilities header, because both printing and grading needs the structure and they also both use Utilities
+FIXED DIMENSION:     Names since each only belongs to a student
+VARYING DIMENSION:   Scores since each only belongs to a student and an assignment
+
+FIELDS:
+  - name : STRING
+  - scores : DOUBLE[]
+
+COLLECTION PASSED AS: gradebooks
+
+
+Write the old signature and the new one side by side.
+For each parameter in the new one, name the reason for its style. A function reading one student does not need the same parameters as one walking the whole roster.
+Flag any function whose parameters change but promise does not. Most will be in this group — student_average still returns a mean; it just receives its input differently.
+Flag any function whose contract genuinely changes. A precondition about a valid index may mean something different once the count is a parameter rather than a constant.
+Ask whether any function should now take one student instead of the whole roster plus an index. Some of them are reaching past five students to look at one.
+
+FUNCTION:          print_roster
+MODULE:            printing
+OLD:               void print_roster(const std::string* names, int name_count)
+NEW:               void print_roster(const Gradebook* book, int num_students);
+PARAMETER REASONS: Replaced string array pointer with Gradebook pointer since Gradebook contains student names.
+CONTRACT CHANGES:  Caller now passes a Gradebook array pointer instead of a standalone string array.
+
+FUNCTION:          print_student_row
+MODULE:            printing
+OLD:               void print_student_row(const std::string& name, const double* const* scores, int student_index, const int num_students, const int num_assignments);
+NEW:               void print_student_row(const Gradebook& student, const int num_students, const int num_assignments);
+PARAMETER REASONS: Replaced separate name string reference and 2D scores array/index with a direct reference to a single student's Gradebook struct.
+CONTRACT CHANGES:  Caller passes a single Gradebook instance instead of passing name and scores separately.
+
+FUNCTION:          student_average
+MODULE:            grading
+OLD:               double student_average(const double* const* scores, int student_index, const int num_assignments)
+NEW:               double student_average(const Gradebook& student, const int num_assignments);
+PARAMETER REASONS: Replaced 2D array pointer and row index with a direct reference to a single Gradebook struct.
+CONTRACT CHANGES:  Caller passes a single Gradebook instance directly.
+
+FUNCTION:          assignment_average
+MODULE:            grading
+OLD:               double assignment_average(const double* const* scores, int assignment_index, const int num_students, const int num_assignments)
+NEW:               double assignment_average(const Gradebook* book, int assignment_index, const int num_students, const int num_assignments);
+PARAMETER REASONS: Replaced raw 2D array pointer with a pointer to an array of Gradebook structs.
+CONTRACT CHANGES:  Caller passes a Gradebook array pointer instead of double** scores.
+
+FUNCTION:          class_average
+MODULE:            grading
+OLD:               double class_average(const double* const* scores, const int num_students, const int num_assignments);
+NEW:               double class_average(const Gradebook* book, const int num_students, const int num_assignments);
+PARAMETER REASONS: Replaced raw 2D array pointer with a pointer to an array of Gradebook structs.
+CONTRACT CHANGES:  Caller passes a Gradebook array pointer instead of double** scores.
+
+FUNCTION:          find_extremes
+MODULE:            grading
+OLD:               void find_extremes(const double* const* scores, int student_index, const int num_students, const int num_assignments, double& lowest, double& highest);
+NEW:               void find_extremes(const Gradebook& student, const int num_students, const int num_assignments, double& lowest, double& highest);
+PARAMETER REASONS: Replaced 2D array pointer and row index with a reference to a single Gradebook struct.
+CONTRACT CHANGES:  Caller passes a single Gradebook instance instead of passing the full grid and a row index.
+
+FUNCTION:          has_perfect_score
+MODULE:            grading
+OLD:               bool has_perfect_score(const double* const* scores, int student_index, const int num_students, const int num_assignments);
+NEW:               bool has_perfect_score(const Gradebook& student, const int num_students, const int num_assignments);
+PARAMETER REASONS: Replaced 2D array pointer and row index with a reference to a single Gradebook struct.
+CONTRACT CHANGES:  Caller passes a single Gradebook instance instead of passing the full grid and a row index.
+
+FUNCTION:          is_at_risk
+MODULE:            grading
+OLD:               bool is_at_risk(const double* const* scores, int student_index, const int num_students, const int num_assignments);
+NEW:               bool is_at_risk(const Gradebook& student, const int num_students, const int num_assignments);
+PARAMETER REASONS: Replaced 2D array pointer and row index with a reference to a single Gradebook struct.
+CONTRACT CHANGES:  Caller passes a single Gradebook instance instead of passing the full grid and a row index.
+Tests Order
+Testing
+grading.h
+printing.h
+
+
+
+
+
+
+
+
+
