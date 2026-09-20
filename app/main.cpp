@@ -21,26 +21,8 @@ int main(int argc, char** argv) {
    {"Bill Gates",        {45.0, 52.0, 61.0, 38.5, 55.0}}
    };
 
-   const std::string names[]{
-        "Ada Lovelace",
-        "Grace Hopper",
-        "Alan Turing",
-        "Katherine Johnson",
-        "Linus Torvalds",
-        "Bill Gates"
-    };
-
-    const int num_students{static_cast<int>(std::size(names))};
+    const int num_students{static_cast<int>(std::size(book))};
     const int num_assignments{5};
-    
-    double **scores = new double*[num_students];
-
-    scores[0] = new double[num_assignments]{95.0, 88.5, 92.0, 78.0, 100.0};
-    scores[1] = new double[num_assignments]{72.5, 80.0, 68.0, 91.0, 85.5};
-    scores[2] = new double[num_assignments]{55.0, 62.5, 48.0, 70.0, 59.0};
-    scores[3] = new double[num_assignments]{100.0, 98.0, 95.5, 99.0, 97.0};
-    scores[4] = new double[num_assignments]{83.0, 79.5, 88.0, 84.0, 91.5};
-    scores[5] = new double[num_assignments]{45.0, 52.0, 61.0, 38.5, 55.0};
 
     while(input != 0) {
         std::cout << "\n=== GRADEBOOK ===\n"

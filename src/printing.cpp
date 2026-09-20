@@ -54,7 +54,7 @@ void print_histogram(const Gradebook* book, const int num_students, const int nu
     std::cout << "\nGRADE DISTRIBUTION\n";
 
     for (auto letter : letters) {
-        auto count{count_grade(scores, letter, num_students, num_assignments)};
+        auto count{count_grade(book, letter, num_students, num_assignments)};
 
         std::cout << letter << " | ";
 
